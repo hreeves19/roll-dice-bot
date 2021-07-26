@@ -8,6 +8,12 @@ client.on("ready", () => {
 });
 
 client.on("message", msg => {
+    if (/^\$test\s*$/gm.test(msg.content)) {
+        const replyMessage = `Bot is on!`;
+        msg.reply(replyMessage);
+        return replyMessage;
+    }
+
     Bot.handleMessage(msg);
 });
 
