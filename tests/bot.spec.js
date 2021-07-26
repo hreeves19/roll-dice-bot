@@ -1,7 +1,6 @@
 const { assert } = require('chai');
 const _ = require('underscore');
 const Bot = require('../utils/bot');
-const Discord = require("discord.js");
 
 describe('Discord Bot', () => {
     describe('handleMessage', () => {
