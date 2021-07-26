@@ -1,22 +1,24 @@
 require('dotenv').config();
 const Discord = require("discord.js");
-const client = new Discord.Client();
 const Bot = require('./utils/bot');
 
-client.on("ready", () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-});
-
-client.on("message", msg => {
-    if (/^\$test\s*$/gm.test(msg.content)) {
-        const replyMessage = `Bot is on!`;
-        msg.reply(replyMessage);
-        return replyMessage;
+const App = {
+    client: new Discord.Client(),
+    start: async () => {
+        try {
+            await App.client.login(process.env.BOT_TOKEN);
+            App.client.on("ready", () => {
+                console.log(`Logged in as ${App.client.user.tag}!`);
+            });
+    
+            App.client.on("message", msg => Bot.handleMessage(msg));
+        } catch (error) {
+            console.error(error);
+        }
+        
     }
+};
 
-    Bot.handleMessage(msg);
-});
+App.start();
 
-client.login(process.env.TOKEN);
-
-module.exports = client;
+module.exports = App;
