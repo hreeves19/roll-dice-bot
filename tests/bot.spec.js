@@ -27,12 +27,13 @@ describe('Discord Bot', () => {
             it('should "$roll d4"', () => {
                 const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll d4', reply: (message) => observedMessage = message };
                 let observedMessage;
-
+                
                 const result = Bot.handleMessage(msg);
                 const diceRoll = result.match(/\d+/gm)[0];
+                const expectedMessage = `rolled a ${diceRoll}!`;
 
-                assert.equal(result, `${msg.author.username} rolled a ${diceRoll}!`);
-                assert.equal(observedMessage, `${msg.author.username} rolled a ${diceRoll}!`);
+                assert.equal(result, expectedMessage);
+                assert.equal(observedMessage, expectedMessage);
             });
 
             it('should "$roll d6"', () => {
@@ -40,8 +41,9 @@ describe('Discord Bot', () => {
 
                 const result = Bot.handleMessage(msg);
                 const diceRoll = result.match(/\d+/gm)[0];
+                const expectedMessage = `rolled a ${diceRoll}!`;
 
-                assert.equal(result, `${msg.author.username} rolled a ${diceRoll}!`);
+                assert.equal(result, expectedMessage);
             });
 
             it('should "$roll d10"', () => {
@@ -50,7 +52,9 @@ describe('Discord Bot', () => {
                 const result = Bot.handleMessage(msg);
                 const diceRoll = result.match(/\d+/gm)[0];
 
-                assert.equal(result, `${msg.author.username} rolled a ${diceRoll}!`);
+                const expectedMessage = `rolled a ${diceRoll}!`;
+
+                assert.equal(result, expectedMessage);
             });
 
             it('should "$roll d12"', () => {
@@ -59,7 +63,9 @@ describe('Discord Bot', () => {
                 const result = Bot.handleMessage(msg);
                 const diceRoll = result.match(/\d+/gm)[0];
 
-                assert.equal(result, `${msg.author.username} rolled a ${diceRoll}!`);
+                const expectedMessage = `rolled a ${diceRoll}!`;
+
+                assert.equal(result, expectedMessage);
             });
 
             it('should "$roll d20"', () => {
@@ -68,7 +74,9 @@ describe('Discord Bot', () => {
                 const result = Bot.handleMessage(msg);
                 const diceRoll = result.match(/\d+/gm)[0];
 
-                assert.equal(result, `${msg.author.username} rolled a ${diceRoll}!`);
+                const expectedMessage = `rolled a ${diceRoll}!`;
+
+                assert.equal(result, expectedMessage);
             });
 
             it('should "$roll d100"', () => {
@@ -78,7 +86,9 @@ describe('Discord Bot', () => {
                 const diceRoll = result.match(/\d+/gm)[0];
 
 
-                assert.equal(result, `${msg.author.username} rolled a ${diceRoll}!`);
+                const expectedMessage = `rolled a ${diceRoll}!`;
+
+                assert.equal(result, expectedMessage);
             });
         });
 

@@ -22,7 +22,7 @@ const Bot = {
 
         if (rollRegex.test(msg.content)) {
             const result = Roll.rollDice(msg.content);
-            const replyMessage = `${msg.author.username} rolled a ${result}!`;
+            const replyMessage = `rolled a ${result}!`;
             msg.reply(replyMessage);
             return replyMessage;
         }
