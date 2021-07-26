@@ -7,7 +7,7 @@
     "start": "node index.js",
     "dev": "nodemon .",
     "test": "set NODE_ENV=test && mocha --reporter spec --exit tests/",
-    "test:watch": "set NODE_ENV=test && nodemon --exec \"mocha --reporter spec --exit tests\/\""
+    "test:watch": "set NODE_ENV=test && nodemon --exec \"mocha --reporter spec --exit tests\/ --timeout=10000\""
   },
   "author": "Court Reeves",
   "license": "ISC",

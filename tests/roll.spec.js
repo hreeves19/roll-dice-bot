@@ -6,7 +6,7 @@ describe('roll.js', () => {
     describe('findDiceNumber', () => {
 
         it('should find a dice with 4 sides', () => {
-            const input = 'roll d4';
+            const input = '$roll d4';
 
             const result = Roll.findDiceNumber(input);
 
@@ -14,7 +14,7 @@ describe('roll.js', () => {
         });
 
         it('should find a dice with 6 sides', () => {
-            const input = 'roll d6';
+            const input = '$roll d6';
 
             const result = Roll.findDiceNumber(input);
 
@@ -22,7 +22,7 @@ describe('roll.js', () => {
         });
 
         it('should find a dice with 8 sides', () => {
-            const input = 'roll d8';
+            const input = '$roll d8';
 
             const result = Roll.findDiceNumber(input);
 
@@ -30,7 +30,7 @@ describe('roll.js', () => {
         });
 
         it('should find a dice with 10 sides', () => {
-            const input = 'roll d10';
+            const input = '$roll d10';
 
             const result = Roll.findDiceNumber(input);
 
@@ -38,7 +38,7 @@ describe('roll.js', () => {
         });
 
         it('should find a dice with 12 sides', () => {
-            const input = 'roll d12';
+            const input = '$roll d12';
 
             const result = Roll.findDiceNumber(input);
 
@@ -46,7 +46,7 @@ describe('roll.js', () => {
         });
 
         it('should find a dice with 20 sides', () => {
-            const input = 'roll d20';
+            const input = '$roll d20';
 
             const result = Roll.findDiceNumber(input);
 
@@ -54,7 +54,7 @@ describe('roll.js', () => {
         });
 
         it('should find a dice with 100 sides', () => {
-            const input = 'roll d100';
+            const input = '$roll d100';
 
             const result = Roll.findDiceNumber(input);
 
@@ -62,7 +62,7 @@ describe('roll.js', () => {
         });
 
         it('should not find a dice with 30 sides', () => {
-            const input = 'roll d30';
+            const input = '$roll d30';
             let observedError;
 
             try {
@@ -94,7 +94,7 @@ describe('roll.js', () => {
         }
 
         it('should roll a d4', () => {
-            const inputString = 'roll d4';
+            const inputString = '$roll d4';
             let hasFoundAllPossiblilties = [1, 2, 3, 4];
 
             const result = foundAllPossibilities(hasFoundAllPossiblilties, inputString);
@@ -102,8 +102,44 @@ describe('roll.js', () => {
             assert.isTrue(result);
         });
 
+        it('should roll a d6', () => {
+            const inputString = '$roll d6';
+            let hasFoundAllPossiblilties = Array.from({length: 6}, (_, i) => i + 1);
+
+            const result = foundAllPossibilities(hasFoundAllPossiblilties, inputString);
+
+            assert.isTrue(result);
+        });
+
+        it('should roll a d8', () => {
+            const inputString = '$roll d8';
+            let hasFoundAllPossiblilties = Array.from({length: 8}, (_, i) => i + 1);
+
+            const result = foundAllPossibilities(hasFoundAllPossiblilties, inputString);
+
+            assert.isTrue(result);
+        });
+
+        it('should roll a d10', () => {
+            const inputString = '$roll d10';
+            let hasFoundAllPossiblilties = Array.from({length: 10}, (_, i) => i + 1);
+
+            const result = foundAllPossibilities(hasFoundAllPossiblilties, inputString);
+
+            assert.isTrue(result);
+        });
+
+        it('should roll a d12', () => {
+            const inputString = '$roll d12';
+            let hasFoundAllPossiblilties = Array.from({length: 12}, (_, i) => i + 1);
+
+            const result = foundAllPossibilities(hasFoundAllPossiblilties, inputString);
+
+            assert.isTrue(result);
+        });
+        
         it('should roll a d20', () => {
-            const inputString = 'roll d20';
+            const inputString = '$roll d20';
             let hasFoundAllPossiblilties = Array.from({length: 20}, (_, i) => i + 1); // Creating array 1 to 20
 
             const result = foundAllPossibilities(hasFoundAllPossiblilties, inputString);
@@ -112,7 +148,7 @@ describe('roll.js', () => {
         });
 
         it('should roll a d100', () => {
-            const inputString = 'roll d100';
+            const inputString = '$roll d100';
             let hasFoundAllPossiblilties = Array.from({length: 100}, (_, i) => i + 1); // Creating array 1 to 20
 
             const result = foundAllPossibilities(hasFoundAllPossiblilties, inputString);
