@@ -10,7 +10,7 @@ describe('Discord Bot', () => {
 
             const result = Bot.handleMessage(msg);
 
-            assert.isUndefined(true);
+            assert.isUndefined(result);
         });
 
         context('valid commands', () => {
