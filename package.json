@@ -4,8 +4,8 @@
   "description": "Discord DND",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon .",
+    "build": "node index.js",
+    "build:watch": "nodemon .",
     "test": "set NODE_ENV=test && mocha --reporter spec --exit tests/",
     "test:watch": "set NODE_ENV=test && nodemon --exec \"mocha --reporter spec --exit tests\/ --timeout=10000\""
   },
