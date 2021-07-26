@@ -1,0 +1,24 @@
+{
+  "name": "roll-dice-bot",
+  "version": "1.0.0",
+  "description": "Discord DND",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon .",
+    "test": "set NODE_ENV=test && mocha --reporter spec --exit tests/",
+    "test:watch": "set NODE_ENV=test && nodemon --exec \"mocha --reporter spec --exit tests\/\""
+  },
+  "author": "Court Reeves",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0",
+    "underscore": "^1.13.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.3",
+    "nodemon": "^2.0.12"
+  }
+}
