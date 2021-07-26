@@ -17,6 +17,8 @@ client.on("message", msg => {
     Bot.handleMessage(msg);
 });
 
+console.log(process.env.BOT_TOKEN)
+
 client.login(process.env.BOT_TOKEN);
 
 module.exports = client;
