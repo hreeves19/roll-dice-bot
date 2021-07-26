@@ -14,6 +14,12 @@ const Bot = {
             return;
         }
 
+        if (/^\$test\s*$/gm.test(msg.content)) {
+            const replyMessage = `Bot is on!`;
+            msg.reply(replyMessage);
+            return replyMessage;
+        }
+
         if (rollRegex.test(msg.content)) {
             const result = Roll.rollDice(msg.content);
             const replyMessage = `${msg.author.username} rolled a ${result}!`;

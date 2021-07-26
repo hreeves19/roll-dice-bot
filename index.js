@@ -8,7 +8,7 @@ client.on("ready", () => {
 });
 
 client.on("message", msg => {
-    Bot.handleMessage(msg)
+    Bot.handleMessage(msg);
 });
 
 client.login(process.env.TOKEN);
