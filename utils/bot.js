@@ -26,6 +26,7 @@ const Bot = {
 
         if (help.test(msg.content)) {
             botReturn.replyMessage = `List of commands: \n\t${Bot.COMMANDS.join('\n\t')}`;
+            msg.reply(botReturn.replyMessage);
             return botReturn;
         }
 
