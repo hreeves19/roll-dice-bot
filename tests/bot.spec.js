@@ -13,14 +13,14 @@ describe('Discord Bot', () => {
         });
 
         context('valid commands', () => {
-            it('should "$test"', () => {
-                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$test', reply: (message) => observedMessage = message };
+            it('should "$roll ping"', () => {
+                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll ping', reply: (message) => observedMessage = message };
                 let observedMessage;
                 const expectedMessage = `Bot is on!`;
 
                 const result = Bot.handleMessage(msg);
 
-                assert.equal(result, expectedMessage);
+                assert.equal(result.replyMessage, expectedMessage);
                 assert.equal(observedMessage, expectedMessage);
             });
 
@@ -29,66 +29,26 @@ describe('Discord Bot', () => {
                 let observedMessage;
                 
                 const result = Bot.handleMessage(msg);
-                const diceRoll = result.match(/\d+/gm)[0];
+                const diceRoll = +result.replyMessage.match(/\d+/gm)[0];
                 const expectedMessage = `rolled a ${diceRoll}!`;
 
-                assert.equal(result, expectedMessage);
+
+                assert.equal(result.replyMessage, expectedMessage);
+                assert.equal(result.total, diceRoll);
                 assert.equal(observedMessage, expectedMessage);
             });
 
-            it('should "$roll d6"', () => {
-                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll d6', reply: () => {} };
+            it('should "$roll 3d6"', () => {
+                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll 3d6', reply: () => {} };
 
                 const result = Bot.handleMessage(msg);
-                const diceRoll = result.match(/\d+/gm)[0];
-                const expectedMessage = `rolled a ${diceRoll}!`;
+                const total = _.reduce(result.rolls, (roll, sum) => roll + sum, 0);
 
-                assert.equal(result, expectedMessage);
-            });
+                const expectedMessage = `rolled ${result.rolls.join(', ')}! Grand total is: ${total}!`;
 
-            it('should "$roll d10"', () => {
-                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll d10', reply: () => {} };
-
-                const result = Bot.handleMessage(msg);
-                const diceRoll = result.match(/\d+/gm)[0];
-
-                const expectedMessage = `rolled a ${diceRoll}!`;
-
-                assert.equal(result, expectedMessage);
-            });
-
-            it('should "$roll d12"', () => {
-                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll d12', reply: () => {} };
-
-                const result = Bot.handleMessage(msg);
-                const diceRoll = result.match(/\d+/gm)[0];
-
-                const expectedMessage = `rolled a ${diceRoll}!`;
-
-                assert.equal(result, expectedMessage);
-            });
-
-            it('should "$roll d20"', () => {
-                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll d20', reply: () => {} };
-
-                const result = Bot.handleMessage(msg);
-                const diceRoll = result.match(/\d+/gm)[0];
-
-                const expectedMessage = `rolled a ${diceRoll}!`;
-
-                assert.equal(result, expectedMessage);
-            });
-
-            it('should "$roll d100"', () => {
-                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll d100', reply: () => {} };
-
-                const result = Bot.handleMessage(msg);
-                const diceRoll = result.match(/\d+/gm)[0];
-
-
-                const expectedMessage = `rolled a ${diceRoll}!`;
-
-                assert.equal(result, expectedMessage);
+                assert.equal(result.replyMessage, expectedMessage);
+                assert.equal(result.rolls.length, 3);
+                assert.equal(result.total, total);
             });
         });
 
