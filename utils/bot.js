@@ -3,6 +3,7 @@ const _ = require('underscore');
 const Roll = require('./roll');
 
 const Bot = {
+    COMMANDS: ['$roll help', '$roll ping', '$roll d4', '$roll 3d4'],
     /**
      * Handles messages for the discord bot.
      * 
@@ -11,6 +12,7 @@ const Bot = {
     handleMessage: (msg) => {
         const rollRegex = /^\$roll\s*d(100|4|6|8|10|12|20)\s*$/gm;
         const rollMultipleDice = /^\$roll\s*\d+d(100|4|6|8|10|12|20)\s*$/gm;
+        const help = /^\$roll\s+help\s*$/gm;
         let total = 0, rolls = [], replyMessage = '';
         let botReturn = {
             total,
@@ -20,6 +22,11 @@ const Bot = {
 
         if (msg.author.bot) {
             botReturn;
+        }
+
+        if (help.test(msg.content)) {
+            botReturn.replyMessage = `List of commands: \n\t${Bot.COMMANDS.join('\n\t')}`;
+            return botReturn;
         }
 
         if (/^\$roll\s+ping\s*$/gm.test(msg.content)) {

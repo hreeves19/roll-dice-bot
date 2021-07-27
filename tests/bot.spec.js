@@ -24,6 +24,14 @@ describe('Discord Bot', () => {
                 assert.equal(observedMessage, expectedMessage);
             });
 
+            it('should "$roll help"', () => {
+                const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll help', reply: (message) => observedMessage = message };
+
+                const result = Bot.handleMessage(msg);
+                const expectedMessage = `List of commands: \n\t${Bot.COMMANDS.join('\n\t')}`;
+                assert.equal(result.replyMessage, expectedMessage);
+            });
+
             it('should "$roll d4"', () => {
                 const msg = { author: { username: 'MisterCleann', bot: false }, content: '$roll d4', reply: (message) => observedMessage = message };
                 let observedMessage;
