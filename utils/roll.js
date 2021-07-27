@@ -2,7 +2,7 @@ const _ = require('underscore');
 
 const Roll = {
     findDiceNumber: (inputString) => {
-        const regex = /100|4|6|8|10|12|20/gm;
+        const regex = /d(100|4|6|8|10|12|20)/gm;
 
         const result = inputString.match(regex);
 
@@ -10,7 +10,7 @@ const Roll = {
             throw new Error(`Cannot find dice with command: ${inputString}`);
         }
 
-        return +result[0];
+        return +result[0].match(/\d+/)[0];
     },
     rollDice: (inputString) => {
         try {
